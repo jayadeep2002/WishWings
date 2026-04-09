@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     const verifyTokens = async () => {
       if (userToken) {
         try {
-          const res = await axios.get('http://localhost:5000/api/user/profile', {
+          const res = await axios.get(`http://${window.location.hostname}:5000/api/user/profile`, {
             headers: { Authorization: `Bearer ${userToken}` }
           });
           setUser(res.data.user);
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
       
       if (agentToken) {
         try {
-          const res = await axios.get('http://localhost:5000/api/agent/profile', {
+          const res = await axios.get(`http://${window.location.hostname}:5000/api/agent/profile`, {
             headers: { Authorization: `Bearer ${agentToken}` }
           });
           setAgent(res.data.agent);
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
       if (adminToken) {
         try {
-          const res = await axios.get('http://localhost:5000/api/admin/profile', {
+          const res = await axios.get(`http://${window.location.hostname}:5000/api/admin/profile`, {
             headers: { Authorization: `Bearer ${adminToken}` }
           });
           setAdmin(res.data.admin);

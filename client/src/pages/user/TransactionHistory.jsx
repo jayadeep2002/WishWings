@@ -32,7 +32,7 @@ export default function TransactionHistory() {
     const fetchBookings = async () => {
       try {
         const token = sessionStorage.getItem('wishwings_user_token');
-        const res = await axios.get('http://localhost:5000/api/bookings/my-bookings', {
+        const res = await axios.get(`http://${window.location.hostname}:5000/api/bookings/my-bookings`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setBookings(res.data.bookings);

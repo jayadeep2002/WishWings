@@ -37,7 +37,7 @@ export default function PackageDetail() {
   useEffect(() => {
     const fetchPkg = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/packages/${id}`);
+        const res = await axios.get(`http://${window.location.hostname}:5000/api/packages/${id}`);
         setPkg(res.data.package);
       } catch (err) { toast.error('Failed to load package'); } finally { setLoading(false); }
     };
@@ -61,7 +61,7 @@ export default function PackageDetail() {
       if (!user) return;
       try {
         const token = sessionStorage.getItem('wishwings_user_token');
-        const res = await axios.get('http://localhost:5000/api/bookings/my-bookings', {
+        const res = await axios.get(`http://${window.location.hostname}:5000/api/bookings/my-bookings`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const completed = res.data.bookings.filter(
@@ -76,7 +76,7 @@ export default function PackageDetail() {
 
   const fetchReviews = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/reviews/package/${id}`);
+      const res = await axios.get(`http://${window.location.hostname}:5000/api/reviews/package/${id}`);
       setReviews(res.data.reviews);
       setAvgRating(res.data.avgRating);
       setTotalReviews(res.data.totalReviews);
@@ -88,7 +88,7 @@ export default function PackageDetail() {
     setSubmittingReview(true);
     try {
       const token = localStorage.getItem('wishwings_user_token');
-      await axios.post('http://localhost:5000/api/reviews', {
+      await axios.post(`http://${window.location.hostname}:5000/api/reviews`, {
         bookingId: selectedBookingForReview,
         packageId: id,
         rating: reviewForm.rating,
@@ -121,7 +121,7 @@ export default function PackageDetail() {
         return;
       }
       const token = localStorage.getItem('wishwings_user_token');
-      await axios.post('http://localhost:5000/api/bookings', {
+      await axios.post(`http://${window.location.hostname}:5000/api/bookings`, {
         ...formData, package: pkg._id, totalAmount: finalAmount
       }, { headers: { Authorization: `Bearer ${token}` } });
       

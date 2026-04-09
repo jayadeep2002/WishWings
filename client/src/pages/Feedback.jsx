@@ -20,7 +20,7 @@ export default function Feedback() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/feedback', {
+      await axios.post(`http://${window.location.hostname}:5000/api/feedback`, {
         ...formData,
         userId: user?._id || null
       });

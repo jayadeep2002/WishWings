@@ -16,7 +16,7 @@ export default function Wishlist() {
     const fetchWishlist = async () => {
       try {
         const token = sessionStorage.getItem('wishwings_user_token');
-        const res = await axios.get('http://localhost:5000/api/wishlist', {
+        const res = await axios.get(`http://${window.location.hostname}:5000/api/wishlist`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setWishlist(res.data.wishlist);
@@ -32,7 +32,7 @@ export default function Wishlist() {
   const removeItem = async (packageId) => {
     try {
       const token = localStorage.getItem('wishwings_user_token');
-      await axios.delete(`http://localhost:5000/api/wishlist/${packageId}`, {
+      await axios.delete(`http://${window.location.hostname}:5000/api/wishlist/${packageId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setWishlist(prev => prev.filter(item => item.package?._id !== packageId));

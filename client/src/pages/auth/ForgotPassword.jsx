@@ -31,7 +31,7 @@ export default function ForgotPassword() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/auth/forgot-password', { email, role });
+      await axios.post(`http://${window.location.hostname}:5000/api/auth/forgot-password`, { email, role });
       toast.success('OTP sent to your email!');
       setStep(STEPS.OTP);
       setResendTimer(60);
@@ -47,7 +47,7 @@ export default function ForgotPassword() {
     if (resendTimer > 0) return;
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/auth/forgot-password', { email, role });
+      await axios.post(`http://${window.location.hostname}:5000/api/auth/forgot-password`, { email, role });
       toast.success('New OTP sent!');
       setResendTimer(60);
       setOtp(['', '', '', '', '', '']);
@@ -94,7 +94,7 @@ export default function ForgotPassword() {
     }
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/auth/verify-otp', { email, otp: otpString });
+      await axios.post(`http://${window.location.hostname}:5000/api/auth/verify-otp`, { email, otp: otpString });
       toast.success('OTP verified!');
       setStep(STEPS.PASSWORD);
     } catch (err) {
@@ -117,7 +117,7 @@ export default function ForgotPassword() {
     }
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/auth/reset-password', {
+      await axios.post(`http://${window.location.hostname}:5000/api/auth/reset-password`, {
         email, otp: otp.join(''), newPassword, role
       });
       toast.success('Password reset successfully!');

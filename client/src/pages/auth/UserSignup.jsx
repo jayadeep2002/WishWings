@@ -21,7 +21,7 @@ export default function UserSignup() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/user/register', formData);
+      const res = await axios.post(`http://${window.location.hostname}:5000/api/auth/user/register`, formData);
       sessionStorage.setItem('wishwings_user_token', res.data.token);
       toast.success('Account created! Welcome to Wish Wings.');
       navigate('/user/dashboard');

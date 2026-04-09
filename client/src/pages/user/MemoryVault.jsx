@@ -17,7 +17,7 @@ export default function MemoryVault() {
     const fetchVault = async () => {
       try {
         const token = sessionStorage.getItem('wishwings_user_token');
-        const res = await axios.get(`http://localhost:5000/api/reaction-vault/booking/${bookingId}`, {
+        const res = await axios.get(`http://${window.location.hostname}:5000/api/reaction-vault/booking/${bookingId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setReactions(res.data.reactions);

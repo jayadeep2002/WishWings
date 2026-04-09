@@ -39,7 +39,7 @@ export default function Packages() {
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/packages');
+        const res = await axios.get(`http://${window.location.hostname}:5000/api/packages`);
         setPackages(res.data.packages);
       } catch (err) {
         console.error("Failed to load packages");
@@ -55,7 +55,7 @@ export default function Packages() {
       if (!user) return;
       try {
         const token = sessionStorage.getItem('wishwings_user_token');
-        const res = await axios.get('http://localhost:5000/api/wishlist/ids', {
+        const res = await axios.get(`http://${window.location.hostname}:5000/api/wishlist/ids`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setWishlistIds(res.data.packageIds);

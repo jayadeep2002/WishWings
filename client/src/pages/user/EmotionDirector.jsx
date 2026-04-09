@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaCompass, FaMapMarkerAlt, FaUserSecret, FaHeadset, FaArrowLeft, FaClock, FaCheckCircle, FaSatellite } from 'react-icons/fa';
 
-const socket = io('http://localhost:5000');
+const socket = io(`http://${window.location.hostname}:5000`);
 
 export default function EmotionDirector() {
   const { id } = useParams();
@@ -19,7 +19,7 @@ export default function EmotionDirector() {
     const fetchBooking = async () => {
       try {
         const token = sessionStorage.getItem('wishwings_user_token');
-        const res = await axios.get(`http://localhost:5000/api/bookings/${id}`, {
+        const res = await axios.get(`http://${window.location.hostname}:5000/api/bookings/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setBooking(res.data.booking);

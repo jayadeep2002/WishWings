@@ -24,7 +24,7 @@ export default function AgentDashboard() {
     const fetchJobs = async () => {
       try {
         const token = sessionStorage.getItem('wishwings_agent_token');
-        const res = await axios.get('http://localhost:5000/api/agent/jobs', {
+        const res = await axios.get(`http://${window.location.hostname}:5000/api/agent/jobs`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setJobs(res.data.jobs);
@@ -41,7 +41,7 @@ export default function AgentDashboard() {
   const updateStatus = async (id, status) => {
     try {
       const token = sessionStorage.getItem('wishwings_agent_token');
-      const res = await axios.put(`http://localhost:5000/api/agent/jobs/${id}/status`, { bookingStatus: status }, {
+      const res = await axios.put(`http://${window.location.hostname}:5000/api/agent/jobs/${id}/status`, { bookingStatus: status }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setJobs(jobs.map(j => j._id === id ? res.data.job : j));
@@ -78,7 +78,7 @@ export default function AgentDashboard() {
 
     try {
       const token = sessionStorage.getItem('wishwings_agent_token');
-      const res = await axios.post(`http://localhost:5000/api/agent/jobs/${selectedJob}/upload`, formData, {
+      const res = await axios.post(`http://${window.location.hostname}:5000/api/agent/jobs/${selectedJob}/upload`, formData, {
         headers: { 
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}` 

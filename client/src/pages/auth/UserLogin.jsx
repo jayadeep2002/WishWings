@@ -16,7 +16,7 @@ export default function UserLogin() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/user/login', { email, password });
+      const res = await axios.post(`http://${window.location.hostname}:5000/api/auth/user/login`, { email, password });
       loginUser(res.data.token, res.data.user);
       toast.success('Welcome back to Wish Wi  ngs!');
       navigate('/user/dashboard');

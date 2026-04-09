@@ -31,7 +31,7 @@ export default function AgentSignup() {
     // In a real app, we would use FormData for file upload. 
     // For this demo, we'll simulate the submission.
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/agent/register', formData);
+      const res = await axios.post(`http://${window.location.hostname}:5000/api/auth/agent/register`, formData);
       toast.success("Your application is under review. Admin will approve your profile before you can start working.", {
         duration: 8000,
         icon: '📝'

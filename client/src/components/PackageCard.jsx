@@ -38,13 +38,13 @@ export default function PackageCard({ pkg, isWishlisted = false, onWishlistChang
     setWishLoading(true);
     try {
       if (wishlisted) {
-        await axios.delete(`http://localhost:5000/api/wishlist/${pkg._id}`, {
+        await axios.delete(`http://${window.location.hostname}:5000/api/wishlist/${pkg._id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setWishlisted(false);
         toast.success('Removed from wishlist', { icon: '💔' });
       } else {
-        await axios.post('http://localhost:5000/api/wishlist', { packageId: pkg._id }, {
+        await axios.post(`http://${window.location.hostname}:5000/api/wishlist`, { packageId: pkg._id }, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setWishlisted(true);

@@ -26,11 +26,11 @@ export default function AdminDashboard() {
       const headers = { Authorization: `Bearer ${token}` };
       
       const [statsRes, bookingsRes, agentsRes, usersRes, feedbackRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/admin/dashboard', { headers }),
-        axios.get('http://localhost:5000/api/admin/bookings', { headers }),
-        axios.get('http://localhost:5000/api/admin/agents', { headers }),
-        axios.get('http://localhost:5000/api/admin/users', { headers }),
-        axios.get('http://localhost:5000/api/feedback', { headers })
+        axios.get(`http://${window.location.hostname}:5000/api/admin/dashboard`, { headers }),
+        axios.get(`http://${window.location.hostname}:5000/api/admin/bookings`, { headers }),
+        axios.get(`http://${window.location.hostname}:5000/api/admin/agents`, { headers }),
+        axios.get(`http://${window.location.hostname}:5000/api/admin/users`, { headers }),
+        axios.get(`http://${window.location.hostname}:5000/api/feedback`, { headers })
       ]);
       
       setStats(statsRes.data.stats);
@@ -52,7 +52,7 @@ export default function AdminDashboard() {
   const handleAgentApproval = async (id, isApproved) => {
     try {
       const token = sessionStorage.getItem('wishwings_admin_token');
-      await axios.put(`http://localhost:5000/api/admin/agents/${id}/${isApproved ? 'approve' : 'reject'}`, {}, {
+      await axios.put(`http://${window.location.hostname}:5000/api/admin/agents/${id}/${isApproved ? 'approve' : 'reject'}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       toast.success(`Partner ${isApproved ? 'authorized' : 'access revoked'}`, { icon: '🛡️' });
@@ -63,7 +63,7 @@ export default function AdminDashboard() {
   const handleAssignAgent = async (bookingId, agentId) => {
     try {
       const token = sessionStorage.getItem('wishwings_admin_token');
-      await axios.put(`http://localhost:5000/api/admin/bookings/${bookingId}/assign`, { agentId }, {
+      await axios.put(`http://${window.location.hostname}:5000/api/admin/bookings/${bookingId}/assign`, { agentId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       toast.success('Agent assigned to mission');
@@ -521,7 +521,7 @@ const AdminProfileSection = ({ admin }) => {
       data.append('name', name);
       if (profilePhoto) data.append('profilePhoto', profilePhoto);
 
-      const res = await axios.put('http://localhost:5000/api/admin/profile', data, {
+      const res = await axios.put(`http://${window.location.hostname}:5000/api/admin/profile`, data, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'

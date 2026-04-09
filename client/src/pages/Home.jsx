@@ -301,7 +301,7 @@ export default function Home() {
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/packages');
+        const res = await axios.get(`http://${window.location.hostname}:5000/api/packages`);
         setPackages(res.data.packages.slice(0, 6)); 
       } catch (err) {
         console.error("Failed to load packages");

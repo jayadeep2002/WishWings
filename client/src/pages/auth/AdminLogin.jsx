@@ -16,7 +16,7 @@ export default function AdminLogin() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/admin/login', { email, password });
+      const res = await axios.post(`http://${window.location.hostname}:5000/api/auth/admin/login`, { email, password });
       loginAdmin(res.data.token, res.data.admin);
       toast.success('System Access Authorized');
       navigate('/admin/dashboard');

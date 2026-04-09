@@ -55,7 +55,7 @@ export default function Profile() {
         data.append('profilePhoto', profilePhoto);
       }
 
-      const res = await axios.put('http://localhost:5000/api/user/profile', data, {
+      const res = await axios.put(`http://${window.location.hostname}:5000/api/user/profile`, data, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
