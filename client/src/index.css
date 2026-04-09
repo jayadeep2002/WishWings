@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;700&family=Dancing+Script:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-wwPrimary text-wwTextPrimary font-dm overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+}
+
+@layer components {
+  .ww-glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 184, 48, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .ww-button-gold {
+    @apply bg-wwGold text-wwPrimary font-bold py-3 px-8 rounded-sm shadow-lg transition-all duration-300 hover:scale-105 active:scale-95;
+    background: linear-gradient(135deg, #FFB830, #FF6B6B);
+  }
+
+  .ww-container {
+    @apply max-w-[1280px] mx-auto w-full px-4;
+  }
+}
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 184, 48, 0.5)); }
+  50% { filter: drop-shadow(0 0 20px rgba(255, 184, 48, 0.8)); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #1A2035 25%, #2D3748 50%, #1A2035 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 3D Tilt Utility (to be used with JS) */
+.tilt-card {
+  perspective: 1000px;
+}
+
+/* Flipkart compatibility for transition period */
+.fk-container { @apply ww-container; }
+.fk-card { @apply ww-glass; }
+.fk-flex-row { display: flex !important; flex-direction: row !important; }
+.fk-flex-col { display: flex !important; flex-direction: column !important; }
+
+/* Global Watermark */
+.watermark-bg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vh;
+  height: 80vh;
+  background-image: url('/logo_bg.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
