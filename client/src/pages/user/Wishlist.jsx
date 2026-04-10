@@ -31,7 +31,7 @@ export default function Wishlist() {
 
   const removeItem = async (packageId) => {
     try {
-      const token = localStorage.getItem('wishwings_user_token');
+      const token = sessionStorage.getItem('wishwings_user_token');
       await axios.delete(`http://${window.location.hostname}:5000/api/wishlist/${packageId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });

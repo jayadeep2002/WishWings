@@ -87,7 +87,7 @@ export default function PackageDetail() {
     if (!selectedBookingForReview) return;
     setSubmittingReview(true);
     try {
-      const token = localStorage.getItem('wishwings_user_token');
+      const token = sessionStorage.getItem('wishwings_user_token');
       await axios.post(`http://${window.location.hostname}:5000/api/reviews`, {
         bookingId: selectedBookingForReview,
         packageId: id,
@@ -120,7 +120,7 @@ export default function PackageDetail() {
         toast.error(`Minimum budget is ₹${pkg.price || 500}`);
         return;
       }
-      const token = localStorage.getItem('wishwings_user_token');
+      const token = sessionStorage.getItem('wishwings_user_token');
       await axios.post(`http://${window.location.hostname}:5000/api/bookings`, {
         ...formData, package: pkg._id, totalAmount: finalAmount
       }, { headers: { Authorization: `Bearer ${token}` } });
