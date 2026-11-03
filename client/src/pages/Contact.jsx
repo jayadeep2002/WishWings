@@ -82,7 +82,7 @@ export default function Contact() {
                 </div>
                 <div>
                    <p className="text-[10px] uppercase tracking-widest text-wwTextSecondary font-bold">Email directly</p>
-                   <p className="text-xl font-dm text-white">jayadeepsai@wishwings.in</p>
+                   <p className="text-xl font-dm text-white">jaideepsaichaganti@gmail.com</p>
                 </div>
               </div>
             </div>

@@ -74,7 +74,7 @@ const Hero = ({ y1, navigate }) => (
       </motion.p>
       <div className="flex flex-col sm:flex-row gap-6 justify-center">
         <button onClick={() => navigate('/packages')} className="ww-button-gold !px-12 !py-4 text-sm tracking-widest uppercase">Book a Surprise</button>
-        <button className="px-12 py-4 border border-white/20 text-white rounded-sm font-bold uppercase tracking-widest text-sm hover:bg-white/5 transition-all">How It Works</button>
+        <button onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} className="px-12 py-4 border border-white/20 text-white rounded-sm font-bold uppercase tracking-widest text-sm hover:bg-white/5 transition-all">How It Works</button>
       </div>
     </motion.div>
     <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-wwPrimary to-transparent pointer-events-none" />
@@ -89,7 +89,7 @@ const HowItWorks = () => {
     { id: 4, title: 'Watch Live', icon: '📹', desc: 'See the reaction live in your Director Mode.' }
   ];
   return (
-    <section className="py-24 bg-wwPrimary relative overflow-hidden">
+    <section id="how-it-works" className="py-24 bg-wwPrimary relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-playfair font-bold text-white mb-20 relative inline-block">
           The Magic Behind the Scene
