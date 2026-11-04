@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PackageCard from '../components/PackageCard';
 import { FaSearch, FaChevronDown, FaGift } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
+import API_URL from '../utils/apiConfig';
 
 export default function Packages() {
   const { user } = useAuth();
@@ -36,11 +37,11 @@ export default function Packages() {
 
   const visibleOccasions = showAllOccasions ? occasions : occasions.slice(0, 6);
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const res = await axios.get(`http://${window.location.hostname}:5000/api/packages`);
-        setPackages(res.data.packages);
+        const packagesRes = await axios.get(`${API_URL}/api/packages`); // Unique name
+        setPackages(packagesRes.data.packages);
       } catch (err) {
         console.error("Failed to load packages");
       } finally {
@@ -55,10 +56,10 @@ export default function Packages() {
       if (!user) return;
       try {
         const token = sessionStorage.getItem('wishwings_user_token');
-        const res = await axios.get(`http://${window.location.hostname}:5000/api/wishlist/ids`, {
+        const wishlistRes = await axios.get(`${API_URL}/api/wishlist/ids`, { // Unique name
           headers: { Authorization: `Bearer ${token}` }
         });
-        setWishlistIds(res.data.packageIds);
+        setWishlistIds(wishlistRes.data.packageIds);
       } catch { /* silent */ }
     };
     fetchWishlistIds();
